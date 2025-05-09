@@ -1,0 +1,180 @@
+{
+  "restaurants": [
+    {
+      "title": "Matsuri Concept",
+      "image": {
+        "url": "/assets/images/restaurants/matsuri.png",
+        "alt": "Matsuri Concept"
+      },
+      "status": "closed",
+      "deliveryFee": 3,
+      "rating": "4.2",
+      "id": 1
+    },
+    {
+      "title": "Subway - Avenida center",
+      "image": {
+        "url": "/assets/images/restaurants/subway.png",
+        "alt": "Subway - Avenida center"
+      },
+      "status": "open",
+      "deliveryFee": 6,
+      "rating": "4.1",
+      "id": 2
+    },
+    {
+      "title": "Burger King - Colombo",
+      "image": {
+        "url": "/assets/images/restaurants/burger-king.png",
+        "alt": "Burger King - Colombo"
+      },
+      "status": "open",
+      "deliveryFee": 5,
+      "rating": "4.7",
+      "id": 3
+    },
+    {
+      "title": "McDonald’s - Novo Centro",
+      "image": {
+        "url": "/assets/images/restaurants/mcdonalds.png",
+        "alt": "McDonald’s - Novo Centro"
+      },
+      "status": "closed",
+      "deliveryFee": 7,
+      "rating": "4.3",
+      "id": 4
+    },
+    {
+      "title": "Matsuri Concept",
+      "image": {
+        "url": "/assets/images/restaurants/matsuri.png",
+        "alt": "Matsuri Concept"
+      },
+      "status": "open",
+      "deliveryFee": 2,
+      "rating": "4.6",
+      "id": 5
+    },
+    {
+      "title": "Subway - Avenida center",
+      "image": {
+        "url": "/assets/images/restaurants/subway.png",
+        "alt": "Subway - Avenida center"
+      },
+      "status": "closed",
+      "deliveryFee": 4,
+      "rating": "4.0",
+      "id": 6
+    },
+    {
+      "title": "Burger King - Colombo",
+      "image": {
+        "url": "/assets/images/restaurants/burger-king.png",
+        "alt": "Burger King - Colombo"
+      },
+      "status": "closed",
+      "deliveryFee": 1,
+      "rating": "4.8",
+      "id": 7
+    },
+    {
+      "title": "McDonald’s - Novo Centro",
+      "image": {
+        "url": "/assets/images/restaurants/mcdonalds.png",
+        "alt": "McDonald’s - Novo Centro"
+      },
+      "status": "open",
+      "deliveryFee": 0,
+      "rating": "4.4",
+      "id": 8
+    },
+    {
+      "title": "Matsuri Concept",
+      "image": {
+        "url": "/assets/images/restaurants/matsuri.png",
+        "alt": "Matsuri Concept"
+      },
+      "status": "closed",
+      "deliveryFee": 0,
+      "rating": "4.1",
+      "id": 9
+    },
+    {
+      "title": "Subway - Avenida center",
+      "image": {
+        "url": "/assets/images/restaurants/subway.png",
+        "alt": "Subway - Avenida center"
+      },
+      "status": "open",
+      "deliveryFee": 3,
+      "rating": "4.5",
+      "id": 10
+    },
+    {
+      "title": "Burger King - Colombo",
+      "image": {
+        "url": "/assets/images/restaurants/burger-king.png",
+        "alt": "Burger King - Colombo"
+      },
+      "status": "open",
+      "deliveryFee": 6,
+      "rating": "4.2",
+      "id": 11
+    },
+    {
+      "title": "McDonald’s - Novo Centro",
+      "image": {
+        "url": "/assets/images/restaurants/mcdonalds.png",
+        "alt": "McDonald’s - Novo Centro"
+      },
+      "status": "closed",
+      "deliveryFee": 0,
+      "rating": "4.9",
+      "id": 12
+    },
+    {
+      "title": "Matsuri Concept",
+      "image": {
+        "url": "/assets/images/restaurants/matsuri.png",
+        "alt": "Matsuri Concept"
+      },
+      "status": "closed",
+      "deliveryFee": 4,
+      "rating": "4.3",
+      "id": 13
+    },
+    {
+      "title": "Subway - Avenida center",
+      "image": {
+        "url": "/assets/images/restaurants/subway.png",
+        "alt": "Subway - Avenida center"
+      },
+      "status": "open",
+      "deliveryFee": 0,
+      "rating": "4.7",
+      "id": 14
+    },
+    {
+      "title": "Burger King - Colombo",
+      "image": {
+        "url": "/assets/images/restaurants/burger-king.png",
+        "alt": "Burger King - Colombo"
+      },
+      "status": "closed",
+      "deliveryFee": 0,
+      "rating": "4.0",
+      "id": 15
+    },
+    {
+      "title": "McDonald’s - Novo Centro",
+      "image": {
+        "url": "/assets/images/restaurants/mcdonalds.png",
+        "alt": "McDonald’s - Novo Centro"
+      },
+      "status": "open",
+      "deliveryFee": 1,
+      "rating": "4.6",
+      "id": 16
+    }
+  ]
+}

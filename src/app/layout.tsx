@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/modules/shared/components/Header";
 import { Footer } from "@/modules/shared/components/Footer";
+import { QueryProvider } from "@/providers/QueryProvider";
 
 const nunito = Nunito({
   weight: ["400", "600", "700", "800"],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${nunito.variable} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Header />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

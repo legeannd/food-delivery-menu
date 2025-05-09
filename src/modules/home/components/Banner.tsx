@@ -2,7 +2,7 @@ import Image, { ImageProps } from "next/image";
 
 export const Banner = (props: ImageProps) => {
   return (
-    <div className="relative flex w-full h-auto border-t border-t-white">
+    <div className="relative flex w-full h-auto max-h-40 border-t border-t-white">
       <Image
         {...props}
         src={props.src}

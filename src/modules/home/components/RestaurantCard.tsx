@@ -2,7 +2,7 @@ import Image from "next/image";
 import { RestaurantCardProps } from "../types";
 import { twMerge } from "tailwind-merge";
 
-export const RestaurantCard = ({
+const RestaurantCard = ({
   title,
   image,
   deliveryFee,
@@ -17,6 +17,7 @@ export const RestaurantCard = ({
         style: "currency",
         currency: "BRL",
       }).format(deliveryFee);
+
   return (
     <div
       className={twMerge(
@@ -24,7 +25,7 @@ export const RestaurantCard = ({
         isOpen ? "cursor-pointer" : "cursor-not-allowed"
       )}
     >
-      <div className="max-w-18 ">
+      <div className="w-18 h-18 flex items-center">
         <Image
           src={image.url}
           alt={image.alt}
@@ -68,3 +69,5 @@ export const RestaurantCard = ({
     </div>
   );
 };
+
+export default RestaurantCard;
