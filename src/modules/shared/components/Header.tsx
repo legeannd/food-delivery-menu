@@ -15,6 +15,7 @@ export const Header = () => {
             alt={"aiqfome logo"}
             width={32}
             height={32}
+            className="cursor-pointer"
           />
           <div className="flex gap-2.5">
             <Image
@@ -23,7 +24,7 @@ export const Header = () => {
               width={24}
               height={24}
             />
-            <div className="flex flex-col gap-[2px] font-bold">
+            <div className="flex flex-col gap-[2px] font-bold cursor-pointer">
               <span className="text-purple-200">entregando em</span>
               <div className="flex items-center gap-1">
                 <span className="text-white">Rua Mandaguari, 198</span>
@@ -37,10 +38,16 @@ export const Header = () => {
             </div>
           </div>
         </div>
-        <Image src="/icons/user.svg" alt={"user icon"} width={24} height={24} />
+        <Image
+          src="/icons/user.svg"
+          alt={"user icon"}
+          width={24}
+          height={24}
+          className="cursor-pointer"
+        />
       </div>
       {pathname === "/" && (
-        <div className="flex gap-3 bg-white p-3 border border-dividers-gray rounded-lg">
+        <div className="flex gap-3 focus-within:border-blue-500  bg-white p-3 border border-dividers-gray rounded-lg">
           <Image
             src="/icons/search.svg"
             alt={"user icon"}
@@ -48,7 +55,7 @@ export const Header = () => {
             height={24}
           />
           <input
-            className="w-full text-sm font-semibold placeholder:font-semibold placeholder:text-sm placeholder:text-light"
+            className="w-full text-sm font-semibold focus:outline-0 placeholder:font-semibold placeholder:text-sm placeholder:text-light"
             placeholder="busque pela loja ou culinária"
             type="text"
           />
