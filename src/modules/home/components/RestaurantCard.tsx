@@ -2,6 +2,7 @@ import Image from "next/image";
 import { RestaurantCardProps } from "../types";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
+import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 
 const RestaurantCard = ({
   title,
@@ -13,17 +14,12 @@ const RestaurantCard = ({
 }: RestaurantCardProps) => {
   const isFreeDelivery = deliveryFee === 0;
   const isOpen = status === "open";
-  const normalizedDeliveryFee = isFreeDelivery
-    ? "Grátis"
-    : new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(deliveryFee);
+  const normalizedDeliveryFee = formatCurrency(deliveryFee);
 
   return (
     <Link
-      href={`/restaurant/${id}`}
-      className="flex w-full items-center gap-3 rounded-lg overflow-hidden bg-neutral-50 cursor-pointer"
+      href={`/catalogue/${id}`}
+      className="flex w-full items-center gap-3 rounded-lg overflow-hidden bg-neutral-50"
     >
       <div className="w-18 h-18 flex items-center">
         <Image

@@ -25,9 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.variable} antialiased`}>
         <QueryProvider>
-          <Header />
-          {children}
-          <Footer />
+          <div className="flex flex-col min-h-screen justify-between">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </QueryProvider>
       </body>
     </html>

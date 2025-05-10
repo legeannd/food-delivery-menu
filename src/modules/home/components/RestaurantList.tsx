@@ -6,6 +6,7 @@ import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import { RestaurantResponse } from "../api/types";
 import { useSearchParams } from "next/navigation";
+import { Skeleton } from "./Skeleton";
 
 const RestaurantCard = dynamic(() => import("./RestaurantCard"));
 
@@ -43,18 +44,7 @@ export const RestaurantList = () => {
       {isLoading || !localData ? (
         <div className="flex flex-col gap-4">
           {Array.from(Array(10).keys()).map((item) => (
-            <div key={item} className="flex animate-pulse space-x-4">
-              <div className="size-18 rounded-lg bg-gray-200"></div>
-              <div className="flex-1 space-y-4 py-1">
-                <div className="h-4 rounded bg-gray-200"></div>
-                <div className="space-y-1">
-                  <div className="grid grid-cols-8 gap-4">
-                    <div className="col-span-3 h-4 rounded bg-gray-200"></div>
-                    <div className="col-span-2 h-4 rounded bg-gray-200"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Skeleton key={item} />
           ))}
         </div>
       ) : (

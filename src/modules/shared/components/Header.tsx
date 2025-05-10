@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const Header = () => {
@@ -20,14 +21,15 @@ export const Header = () => {
   return (
     <header className="flex flex-col  gap-4 bg-purple-500 p-4">
       <div className="flex justify-between">
-        <div className="flex gap-6">
-          <Image
-            src="/icons/logo.svg"
-            alt={"aiqfome logo"}
-            width={32}
-            height={32}
-            className="cursor-pointer"
-          />
+        <div className="flex gap-6 items-center">
+          <Link href="/">
+            <Image
+              src="/icons/logo.svg"
+              alt={"aiqfome logo"}
+              width={32}
+              height={32}
+            />
+          </Link>
           <div className="flex gap-2.5">
             <Image
               src="/icons/location.svg"
