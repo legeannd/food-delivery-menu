@@ -2,7 +2,7 @@ import { request } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { RestaurantResponse } from "./types";
 
-export function useGetRestaurants() {
+export function useGetRestaurants({ enabled = true }: { enabled: boolean }) {
 
   const getRestaurants = async () => {
     const response = await request('/restaurants')
@@ -12,7 +12,8 @@ export function useGetRestaurants() {
 
 
   return useQuery<RestaurantResponse[]>({
+    enabled,
     queryKey: ['restaurants'],
-    queryFn: getRestaurants
+    queryFn: getRestaurants,
   })
 }
