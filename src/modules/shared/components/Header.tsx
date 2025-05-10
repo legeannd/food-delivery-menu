@@ -1,11 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const Header = () => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const handleSearch = (searchTerm: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (searchTerm) {
+      params.set("search", searchTerm);
+    } else {
+      params.delete("search");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
   return (
     <header className="flex flex-col  gap-4 bg-purple-500 p-4">
       <div className="flex justify-between">
@@ -58,6 +69,10 @@ export const Header = () => {
             className="w-full text-sm font-semibold focus:outline-0 placeholder:font-semibold placeholder:text-sm placeholder:text-light"
             placeholder="busque pela loja ou culinária"
             type="text"
+            defaultValue={searchParams.get("search")?.toString()}
+            onChange={(e) => {
+              handleSearch(e.target.value);
+            }}
           />
         </div>
       )}

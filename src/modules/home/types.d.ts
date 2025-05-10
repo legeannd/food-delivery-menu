@@ -7,4 +7,5 @@ export interface RestaurantCardProps {
   status: 'open' | 'closed'
   deliveryFee: number
   rating: string
+  id: string
 }

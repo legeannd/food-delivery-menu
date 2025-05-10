@@ -5,6 +5,7 @@ import { useGetRestaurants } from "../api/queries";
 import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import { RestaurantResponse } from "../api/types";
+import { useSearchParams } from "next/navigation";
 
 const RestaurantCard = dynamic(() => import("./RestaurantCard"));
 
@@ -15,10 +16,15 @@ export const RestaurantList = () => {
   const { data, isLoading, isFetched } = useGetRestaurants({
     enabled: !persistedData,
   });
+  const searchTerm = useSearchParams().get("search") ?? "".toLowerCase();
 
-  const openRestaurants = localData?.filter((item) => item.status === "open");
+  const openRestaurants = localData?.filter(
+    (item) =>
+      item.status === "open" && item.title.toLowerCase().includes(searchTerm)
+  );
   const closedRestaurants = localData?.filter(
-    (item) => item.status === "closed"
+    (item) =>
+      item.status === "closed" && item.title.toLowerCase().includes(searchTerm)
   );
 
   useEffect(() => {
@@ -59,6 +65,7 @@ export const RestaurantList = () => {
               {openRestaurants.map((item) => (
                 <RestaurantCard
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   image={item.image}
                   status={item.status as "open" | "closed"}
@@ -74,6 +81,7 @@ export const RestaurantList = () => {
               {closedRestaurants.map((item) => (
                 <RestaurantCard
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   image={item.image}
                   status={item.status as "open" | "closed"}

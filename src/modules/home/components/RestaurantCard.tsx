@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { RestaurantCardProps } from "../types";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 const RestaurantCard = ({
   title,
@@ -8,6 +9,7 @@ const RestaurantCard = ({
   deliveryFee,
   status,
   rating,
+  id,
 }: RestaurantCardProps) => {
   const isFreeDelivery = deliveryFee === 0;
   const isOpen = status === "open";
@@ -19,11 +21,9 @@ const RestaurantCard = ({
       }).format(deliveryFee);
 
   return (
-    <div
-      className={twMerge(
-        "flex w-full items-center gap-3 rounded-lg overflow-hidden bg-neutral-50",
-        isOpen ? "cursor-pointer" : "cursor-not-allowed"
-      )}
+    <Link
+      href={`/restaurant/${id}`}
+      className="flex w-full items-center gap-3 rounded-lg overflow-hidden bg-neutral-50 cursor-pointer"
     >
       <div className="w-18 h-18 flex items-center">
         <Image
@@ -66,7 +66,7 @@ const RestaurantCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
