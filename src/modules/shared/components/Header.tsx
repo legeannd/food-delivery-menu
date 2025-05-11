@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -39,14 +40,9 @@ export const Header = () => {
             />
             <div className="flex flex-col gap-[2px] font-bold cursor-pointer">
               <span className="text-purple-200">entregando em</span>
-              <div className="flex items-center gap-1">
-                <span className="text-white">Rua Mandaguari, 198</span>
-                <Image
-                  src="/icons/chevron-right.svg"
-                  alt={"arrow right icon"}
-                  width={16}
-                  height={16}
-                />
+              <div className="flex items-center gap-1 text-white">
+                <span>Rua Mandaguari, 198</span>
+                <ChevronRight size={16} />
               </div>
             </div>
           </div>

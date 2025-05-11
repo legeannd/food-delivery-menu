@@ -5,6 +5,7 @@ import { useGetRestaurantById } from "../api/queries";
 import { Skeleton } from "./Skeleton";
 import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 import { twMerge } from "tailwind-merge";
+import { ChevronRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -52,14 +53,9 @@ export const RestaurantDetails = ({ id }: { id: string }) => {
                     className="p-1"
                   />
                 </div>
-                <div className="flex gap-1 text-xs cursor-pointer font-bold text-teal-400">
+                <div className="flex items-center gap-1 text-xs cursor-pointer font-bold text-teal-400">
                   <span>mais infos</span>
-                  <Image
-                    src={"/icons/chevron-right-green.svg"}
-                    alt={"Arrow right"}
-                    width={8}
-                    height={8}
-                  />
+                  <ChevronRight strokeWidth={4} size={8} />
                 </div>
               </div>
             </div>
@@ -85,12 +81,7 @@ export const RestaurantDetails = ({ id }: { id: string }) => {
                       height={24}
                     />
                     <span>{formatCurrency(data?.deliveryFee ?? 0)}</span>
-                    <Image
-                      src={"/icons/chevron-right-purple.svg"}
-                      alt={"Arrow right"}
-                      width={8}
-                      height={8}
-                    />
+                    <ChevronRight strokeWidth={4} size={8} />
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-neutral-500 text-xs font-bold">
