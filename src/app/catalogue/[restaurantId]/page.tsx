@@ -3,12 +3,12 @@ import { RestaurantDetails } from "@/modules/catalogue/components/RestaurantDeta
 export default async function Catalogue({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ restaurantId: string }>;
 }) {
-  const { id } = await params;
+  const { restaurantId } = await params;
   return (
     <div className="flex grow">
-      <RestaurantDetails id={id} />
+      <RestaurantDetails id={restaurantId} />
     </div>
   );
 }

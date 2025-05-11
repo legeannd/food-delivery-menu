@@ -3,8 +3,9 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 import { DishCardProps } from "../types";
+import { usePathname } from "next/navigation";
 
-export const DishCard = ({
+const DishCard = ({
   name,
   price,
   description,
@@ -12,9 +13,15 @@ export const DishCard = ({
   label,
   originalPrice,
   priceNote,
+  id,
 }: DishCardProps) => {
+  const pathname = usePathname();
+
   return (
-    <Link href={`/dish/`} className="flex gap-4 justify-between items-start">
+    <Link
+      href={`${pathname}/dishes/${id}`}
+      className="flex gap-4 justify-between items-start"
+    >
       <div className="flex flex-col gap-0.5">
         <div className="flex gap-1">
           <h4 className="text-sm font-semibold text-neutral-900">{name}</h4>
@@ -62,3 +69,5 @@ export const DishCard = ({
     </Link>
   );
 };
+
+export default DishCard;

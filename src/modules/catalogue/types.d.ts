@@ -6,4 +6,5 @@ export interface DishCardProps {
   isDiscounted?: boolean;
   label?: string;
   priceNote?: string;
+  id: string
 }

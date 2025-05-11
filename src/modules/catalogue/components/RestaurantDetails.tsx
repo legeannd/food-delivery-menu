@@ -12,7 +12,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { DishCard } from "./DishCard";
+import dynamic from "next/dynamic";
+
+const DishCard = dynamic(() => import("./DishCard"));
 
 export const RestaurantDetails = ({ id }: { id: string }) => {
   const { data, isLoading } = useGetRestaurantById({ id });
