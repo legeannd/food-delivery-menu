@@ -26,8 +26,35 @@ export const useLocalStorage = () => {
     );
   };
 
+  const getSessionStorage = (key: string) => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    const value = sessionStorage.getItem(`${LOCAL_STORAGE_PREFIX + key}`);
+
+    if (value && value !== undefined) {
+      return JSON.parse(value);
+    }
+
+    return null;
+  };
+
+  const setSessionStorage = (key: string, value: object) => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    sessionStorage.setItem(
+      `${LOCAL_STORAGE_PREFIX + key}`,
+      JSON.stringify(value)
+    );
+  };
+
   return {
     getLocalStorage,
     setLocalStorage,
+    getSessionStorage,
+    setSessionStorage,
   };
 };

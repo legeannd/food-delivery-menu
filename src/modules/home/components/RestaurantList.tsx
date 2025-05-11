@@ -12,8 +12,8 @@ const RestaurantCard = dynamic(() => import("./RestaurantCard"));
 
 export const RestaurantList = () => {
   const [localData, setLocalData] = useState<RestaurantResponse[] | null>(null);
-  const { getLocalStorage, setLocalStorage } = useLocalStorage();
-  const persistedData = getLocalStorage("restaurants");
+  const { getSessionStorage, setSessionStorage } = useLocalStorage();
+  const persistedData = getSessionStorage("restaurants");
   const { data, isLoading, isFetched } = useGetRestaurants({
     enabled: !persistedData,
   });
@@ -32,7 +32,7 @@ export const RestaurantList = () => {
     if (!!persistedData) {
       setLocalData(persistedData);
     } else if (isFetched && data) {
-      setLocalStorage("restaurants", data);
+      setSessionStorage("restaurants", data);
       setLocalData(data);
     }
 
