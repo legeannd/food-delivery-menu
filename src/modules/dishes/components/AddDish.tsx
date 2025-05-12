@@ -16,15 +16,19 @@ import { CurrentSelectedOption } from "../types";
 import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
 import Link from "next/link";
 
-export const AddDish = () => {
+export const AddDish = ({ price }: { price: number }) => {
   const [selected, setSelected] = useState<CurrentSelectedOption[]>([]);
   const [quantity, setQuantity] = useState(0);
   const [dishObs, setDishObs] = useState("");
+  const [accordionDefaultValue, setAccordionDefaultValue] = useState<string[]>(
+    []
+  );
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const { data, isLoading } = useGetAvailableOptions();
   const params = useParams<{ restaurantId: string; dishId: string }>();
 
-  const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}|dish-${params.dishId}`;
+  const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}`;
+  const previousItems = getLocalStorage(LOCALSTORAGE_KEY);
 
   const handleChangeDishQuantity = (type: "add" | "remove") => {
     if (type === "add") {
@@ -33,11 +37,9 @@ export const AddDish = () => {
       if (quantity > 1) {
         setQuantity((quantity) => quantity - 1);
       } else {
-        setLocalStorage(LOCALSTORAGE_KEY, {
-          quantity: 0,
-          selected: selected,
-          dishObs,
-        });
+        const filteredItems = { ...previousItems };
+        delete filteredItems[params.dishId];
+        setLocalStorage(LOCALSTORAGE_KEY, filteredItems);
         setQuantity(0);
       }
     }
@@ -48,27 +50,54 @@ export const AddDish = () => {
   };
 
   useEffect(() => {
-    if (selected.length > 0 || quantity > 0) {
-      setLocalStorage(LOCALSTORAGE_KEY, {
-        quantity: quantity,
-        selected: selected,
-        dishObs,
-      });
+    if (Array.isArray(data)) {
+      const defaultAccordionValues = [
+        "quantidade",
+        ...data
+          .filter((option) =>
+            option.items.some((item) =>
+              selected.some((selectedItem) => selectedItem.name === item.name)
+            )
+          )
+          .map((option) => option.id),
+      ];
+      setAccordionDefaultValue(defaultAccordionValues);
+    }
+  }, [data, selected]);
+
+  useEffect(() => {
+    if (quantity > 0) {
+      const newItems = previousItems
+        ? {
+            ...previousItems,
+            [params.dishId]: {
+              quantity: quantity,
+              selected: selected,
+              dishObs: dishObs,
+            },
+          }
+        : {
+            [params.dishId]: {
+              quantity: quantity,
+              selected: selected,
+              dishObs: dishObs,
+            },
+          };
+      setLocalStorage(LOCALSTORAGE_KEY, newItems);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [LOCALSTORAGE_KEY, selected, quantity, dishObs]);
+  }, [LOCALSTORAGE_KEY, previousItems, selected, quantity, dishObs]);
 
   useEffect(() => {
-    const currentDish = getLocalStorage(LOCALSTORAGE_KEY);
-    if (currentDish) {
+    if (params.dishId && previousItems && previousItems[params.dishId]) {
+      const currentDish = previousItems[params.dishId];
       setSelected(currentDish.selected);
       setQuantity(currentDish.quantity);
       setDishObs(currentDish.dishObs);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [LOCALSTORAGE_KEY]);
+  }, [LOCALSTORAGE_KEY, params.dishId]);
 
   return isLoading ? (
     <Skeleton />
@@ -76,20 +105,8 @@ export const AddDish = () => {
     <div className="flex flex-col">
       <Accordion
         type="multiple"
-        defaultValue={[
-          "quantidade",
-          ...(Array.isArray(data)
-            ? data
-                .filter((option) =>
-                  option.items.some((item) =>
-                    selected.some(
-                      (selectedItem) => selectedItem.name === item.name
-                    )
-                  )
-                )
-                .map((option) => option.id)
-            : []),
-        ]}
+        defaultValue={accordionDefaultValue}
+        key={accordionDefaultValue.join("-")}
         className="w-full h-auto"
       >
         <AccordionItem
@@ -97,7 +114,7 @@ export const AddDish = () => {
           className="pb-4 border-b-4 border-neutral-100"
         >
           <AddDishButton
-            value={19.9}
+            value={price}
             quantity={quantity}
             onDelete={() => handleChangeDishQuantity("remove")}
             onAdd={() => handleChangeDishQuantity("add")}
@@ -135,7 +152,7 @@ export const AddDish = () => {
           </AccordionItem>
         ))}
       </Accordion>
-      <div className="flex flex-col gap-6 px-4 pb-8">
+      <div className="flex flex-col gap-8 px-4 pb-4">
         <textarea
           name="dishObs"
           id="dishObs"
@@ -146,8 +163,8 @@ export const AddDish = () => {
         ></textarea>
         {quantity > 0 && (
           <Link
-            href={"/checkout"}
-            className=" text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
+            href={`/catalogue/${params.restaurantId}/checkout`}
+            className="text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
           >
             ver ticket
           </Link>

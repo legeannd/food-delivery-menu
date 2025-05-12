@@ -5,6 +5,7 @@ export interface OptionsResponse {
   selectionType: "single" | "multiple";
   required?: boolean;
   maxSelection?: number;
+  type: string
   items: Array<{
     name: string;
     price: number;

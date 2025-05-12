@@ -2,46 +2,27 @@
 
 import dynamic from "next/dynamic";
 import { useGetRestaurants } from "../api/queries";
-import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
-import { useEffect, useState } from "react";
-import { RestaurantResponse } from "../api/types";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "./Skeleton";
 
 const RestaurantCard = dynamic(() => import("./RestaurantCard"));
 
 export const RestaurantList = () => {
-  const [localData, setLocalData] = useState<RestaurantResponse[] | null>(null);
-  const { getSessionStorage, setSessionStorage } = useLocalStorage();
-  const persistedData = getSessionStorage("restaurants");
-  const { data, isLoading, isFetched } = useGetRestaurants({
-    enabled: !persistedData,
-  });
+  const { data, isLoading } = useGetRestaurants({ enabled: true });
   const searchTerm = useSearchParams().get("search") ?? "".toLowerCase();
 
-  const openRestaurants = localData?.filter(
+  const openRestaurants = data?.filter(
     (item) =>
       item.status === "open" && item.title.toLowerCase().includes(searchTerm)
   );
-  const closedRestaurants = localData?.filter(
+  const closedRestaurants = data?.filter(
     (item) =>
       item.status === "closed" && item.title.toLowerCase().includes(searchTerm)
   );
 
-  useEffect(() => {
-    if (!!persistedData) {
-      setLocalData(persistedData);
-    } else if (isFetched && data) {
-      setSessionStorage("restaurants", data);
-      setLocalData(data);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFetched, data]);
-
   return (
     <div className="flex flex-col px-4 py-6 gap-9">
-      {isLoading || !localData ? (
+      {isLoading ? (
         <div className="flex flex-col gap-4">
           {Array.from(Array(10).keys()).map((item) => (
             <Skeleton key={item} />

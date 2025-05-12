@@ -1437,6 +1437,7 @@
       "description": "escolha 1",
       "selectionType": "single",
       "required": true,
+      "type": "size",
       "items": [
         {
           "name": "médio",
@@ -1458,6 +1459,7 @@
       "selectionType": "multiple",
       "maxSelection": 2,
       "required": true,
+      "type": "side",
       "items": [
         { "name": "shoyu", "price": 0.0, "type": "side" },
         { "name": "gengibre", "price": 0.0, "type": "side" },
@@ -1470,6 +1472,7 @@
       "category": "vai querer bebida?",
       "description": "escolha quantos quiser",
       "selectionType": "multiple",
+      "type": "drink",
       "items": [
         { "name": "coca-cola", "price": 5.0, "type": "drink" },
         { "name": "fanta laranja", "price": 5.0, "type": "drink" },
@@ -1483,6 +1486,7 @@
       "category": "precisa de talher?",
       "description": "escolha até 1",
       "selectionType": "single",
+      "type": "utensil",
       "items": [
         { "name": "hashi", "price": 0.0, "type": "utensil" },
         { "name": "garfo e faca descartável", "price": 1.0, "type": "utensil" }
@@ -1494,6 +1498,7 @@
       "description": "escolha até 2",
       "selectionType": "multiple",
       "maxSelection": 2,
+      "type": "extra",
       "items": [
         { "name": "biscoito da sorte", "price": 2.0, "type": "extra" },
         { "name": "rolinho primavera", "price": 8.0, "type": "extra" },

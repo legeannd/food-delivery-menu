@@ -38,7 +38,7 @@ export default async function Dishes({
             {data.description}
           </span>
         </div>
-        <AddDish />
+        <AddDish price={data.price ?? 0} />
       </div>
     </div>
   );
