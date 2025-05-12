@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useGetAvailableOptions } from "../api/queries";
-import { Skeleton } from "./Skeleton";
 import { SelectOption } from "./SelectOption";
 import { CurrentSelectedOption } from "../types";
 import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
@@ -24,7 +23,7 @@ export const AddDish = ({ price }: { price: number }) => {
     []
   );
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
-  const { data, isLoading } = useGetAvailableOptions();
+  const { data } = useGetAvailableOptions();
   const params = useParams<{ restaurantId: string; dishId: string }>();
 
   const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}`;
@@ -99,9 +98,7 @@ export const AddDish = ({ price }: { price: number }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [LOCALSTORAGE_KEY, params.dishId]);
 
-  return isLoading ? (
-    <Skeleton />
-  ) : (
+  return (
     <div className="flex flex-col">
       <Accordion
         type="multiple"

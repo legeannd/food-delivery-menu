@@ -2,6 +2,8 @@ import { request } from "@/lib/api";
 import { ReviewItems } from "@/modules/checkout/components/ReviewItems";
 import { RestaurantResponse } from "@/modules/home/api/types";
 import Image from "next/image";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Checkout({
   params,
@@ -29,7 +31,9 @@ export default async function Checkout({
             <h2 className="text-neutral-900">{data.title}</h2>
           </div>
         </div>
-        <ReviewItems />
+        <Suspense fallback={<Loading />}>
+          <ReviewItems />
+        </Suspense>
       </div>
     </div>
   );

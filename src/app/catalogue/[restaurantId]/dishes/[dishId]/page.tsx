@@ -3,14 +3,16 @@ import { DishResponse } from "@/modules/dishes/api/types";
 import { AddDish } from "@/modules/dishes/components/AddDish";
 import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 import Image from "next/image";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Dishes({
   params,
 }: {
   params: Promise<{ restaurantId: string; dishId: string }>;
 }) {
-  const dishId = (await params).dishId;
-  const data = (await request(`/dishes/${dishId}`)) as DishResponse;
+  const id = (await params).dishId;
+  const data = (await request(`/dishes/${id}`)) as DishResponse;
 
   return (
     <div className="flex grow">
@@ -38,7 +40,9 @@ export default async function Dishes({
             {data.description}
           </span>
         </div>
-        <AddDish price={data.price ?? 0} />
+        <Suspense fallback={<Loading />}>
+          <AddDish price={data.price ?? 0} />
+        </Suspense>
       </div>
     </div>
   );

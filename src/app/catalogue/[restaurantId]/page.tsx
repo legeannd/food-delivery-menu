@@ -1,14 +1,13 @@
 import { RestaurantDetails } from "@/modules/catalogue/components/RestaurantDetails";
+import { Suspense } from "react";
+import Loading from "./loading";
 
-export default async function Catalogue({
-  params,
-}: {
-  params: Promise<{ restaurantId: string }>;
-}) {
-  const { restaurantId } = await params;
+export default async function Catalogue() {
   return (
     <div className="flex grow">
-      <RestaurantDetails id={restaurantId} />
+      <Suspense fallback={<Loading />}>
+        <RestaurantDetails />
+      </Suspense>
     </div>
   );
 }

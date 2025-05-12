@@ -209,6 +209,12 @@ export const ReviewItems = () => {
                     </div>
                   );
                 })}
+                {currentItem.dishObs && (
+                  <div className="flex gap-1 p-1.5 rounded-sm bg-neutral-50 text-neutral-700 text-xs">
+                    <span className="font-bold">observação:</span>
+                    <span className="font-semibold">{currentItem.dishObs}</span>
+                  </div>
+                )}
               </div>
             </div>
           );
