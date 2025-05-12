@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MapPin, UserRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -21,7 +21,7 @@ export const Header = () => {
   };
   return (
     <header className="flex flex-col  gap-4 bg-purple-500 p-4">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between text-white">
         <div className="flex gap-6 items-center">
           <Link href="/">
             <Image
@@ -31,13 +31,8 @@ export const Header = () => {
               height={32}
             />
           </Link>
-          <div className="flex gap-2.5">
-            <Image
-              src="/icons/location.svg"
-              alt={"location icon"}
-              width={24}
-              height={24}
-            />
+          <div className="flex gap-2.5 items-center text-white">
+            <MapPin size={24} />
             <div className="flex flex-col gap-[2px] font-bold cursor-pointer">
               <span className="text-purple-200">entregando em</span>
               <div className="flex items-center gap-1 text-white">
@@ -47,13 +42,7 @@ export const Header = () => {
             </div>
           </div>
         </div>
-        <Image
-          src="/icons/user.svg"
-          alt={"user icon"}
-          width={24}
-          height={24}
-          className="cursor-pointer"
-        />
+        <UserRound size={24} />
       </div>
       {pathname === "/" && (
         <div className="flex gap-3 focus-within:border-blue-500  bg-white p-3 border border-dividers-gray rounded-lg">

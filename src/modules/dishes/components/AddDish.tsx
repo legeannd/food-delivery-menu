@@ -18,15 +18,28 @@ import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
 export const AddDish = () => {
   const [selected, setSelected] = useState<CurrentSelectedOption[]>([]);
   const [quantity, setQuantity] = useState(0);
+  const [dishObs, setDishObs] = useState("");
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const { data, isLoading } = useGetAvailableOptions();
   const params = useParams<{ restaurantId: string; dishId: string }>();
 
-  const handleIncreaseDishQuantity = () => {
-    setQuantity((quantity) => quantity + 1);
-  };
-  const handleDeleteDishes = () => {
-    setQuantity((quantity) => (quantity > 0 ? quantity - 1 : 0));
+  const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}|dish-${params.dishId}`;
+
+  const handleChangeDishQuantity = (type: "add" | "remove") => {
+    if (type === "add") {
+      setQuantity((quantity) => quantity + 1);
+    } else {
+      if (quantity > 1) {
+        setQuantity((quantity) => quantity - 1);
+      } else {
+        setLocalStorage(LOCALSTORAGE_KEY, {
+          quantity: 0,
+          selected: selected,
+          dishObs,
+        });
+        setQuantity(0);
+      }
+    }
   };
 
   const handleSelectOption = (selected: CurrentSelectedOption[]) => {
@@ -34,22 +47,27 @@ export const AddDish = () => {
   };
 
   useEffect(() => {
-    if (selected.length > 0) {
-      setLocalStorage(
-        `restaurant-${params.restaurantId}|dish-${params.dishId}`,
-        selected
-      );
+    if (selected.length > 0 || quantity > 0) {
+      setLocalStorage(LOCALSTORAGE_KEY, {
+        quantity: quantity,
+        selected: selected,
+        dishObs,
+      });
     }
-    console.log("set");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.dishId, params.restaurantId, selected]);
+  }, [LOCALSTORAGE_KEY, selected, quantity, dishObs]);
 
   useEffect(() => {
-    setSelected(
-      getLocalStorage(`restaurant-${params.restaurantId}|dish-${params.dishId}`)
-    );
+    const currentDish = getLocalStorage(LOCALSTORAGE_KEY);
+    if (currentDish) {
+      setSelected(currentDish.selected);
+      setQuantity(currentDish.quantity);
+      setDishObs(currentDish.dishObs);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.dishId, params.restaurantId]);
+  }, [LOCALSTORAGE_KEY]);
 
   return isLoading ? (
     <Skeleton />
@@ -76,8 +94,8 @@ export const AddDish = () => {
           <AddDishButton
             value={19.9}
             quantity={quantity}
-            onDelete={handleDeleteDishes}
-            onAdd={handleIncreaseDishQuantity}
+            onDelete={() => handleChangeDishQuantity("remove")}
+            onAdd={() => handleChangeDishQuantity("add")}
           />
         </AccordionItem>
         {data?.map((option) => (
@@ -116,6 +134,8 @@ export const AddDish = () => {
         <textarea
           name="dishObs"
           id="dishObs"
+          value={dishObs}
+          onChange={(e) => setDishObs(e.target.value)}
           className="border border-neutral-200 rounded-sm w-full py-2.5 px-3 font-semibold text-sm text-neutral-500 placeholder:font-semibold placeholder:text-sm placeholder:text-neutral-500"
           placeholder="alguma observação do item? • opcional ex: tirar algum ingrediente, ponto do prato"
         ></textarea>
