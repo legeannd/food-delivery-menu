@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.variable} antialiased`}>
         <QueryProvider>
-          <div className="flex flex-col min-h-screen justify-between">
+          <div className="flex flex-col min-h-screen justify-between touch-none">
             <Header />
             {children}
             <Footer />

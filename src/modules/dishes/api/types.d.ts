@@ -9,5 +9,6 @@ export interface OptionsResponse {
     name: string;
     price: number;
     originalPrice?: number;
+    type: string;
   }>;
 }

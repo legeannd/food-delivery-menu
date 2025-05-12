@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { AddDishButton } from "./AddDishButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -12,13 +12,15 @@ import {
 import { useGetAvailableOptions } from "../api/queries";
 import { Skeleton } from "./Skeleton";
 import { SelectOption } from "./SelectOption";
+import { CurrentSelectedOption } from "../types";
+import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
 
 export const AddDish = () => {
+  const [selected, setSelected] = useState<CurrentSelectedOption[]>([]);
   const [quantity, setQuantity] = useState(0);
+  const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const { data, isLoading } = useGetAvailableOptions();
-  const params = useParams();
-  console.log(params);
-  console.log(data);
+  const params = useParams<{ restaurantId: string; dishId: string }>();
 
   const handleIncreaseDishQuantity = () => {
     setQuantity((quantity) => quantity + 1);
@@ -27,13 +29,44 @@ export const AddDish = () => {
     setQuantity((quantity) => (quantity > 0 ? quantity - 1 : 0));
   };
 
+  const handleSelectOption = (selected: CurrentSelectedOption[]) => {
+    setSelected(selected);
+  };
+
+  useEffect(() => {
+    if (selected.length > 0) {
+      setLocalStorage(
+        `restaurant-${params.restaurantId}|dish-${params.dishId}`,
+        selected
+      );
+    }
+    console.log("set");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.dishId, params.restaurantId, selected]);
+
+  useEffect(() => {
+    setSelected(
+      getLocalStorage(`restaurant-${params.restaurantId}|dish-${params.dishId}`)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.dishId, params.restaurantId]);
+
   return isLoading ? (
     <Skeleton />
   ) : (
     <div className="flex flex-col">
       <Accordion
         type="multiple"
-        defaultValue={["quantidade"]}
+        defaultValue={[
+          "quantidade",
+          ...(data ?? [])
+            ?.filter((option) =>
+              option.items.some((item) =>
+                selected.some((selectedItem) => selectedItem.name === item.name)
+              )
+            )
+            .map((option) => option.id),
+        ]}
         className="w-full h-auto"
       >
         <AccordionItem
@@ -70,11 +103,23 @@ export const AddDish = () => {
               )}
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-5">
-              <SelectOption {...option} />
+              <SelectOption
+                {...option}
+                selected={selected}
+                onSelect={(selected) => handleSelectOption(selected)}
+              />
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
+      <div className="px-4 pb-8">
+        <textarea
+          name="dishObs"
+          id="dishObs"
+          className="border border-neutral-200 rounded-sm w-full py-2.5 px-3 font-semibold text-sm text-neutral-500 placeholder:font-semibold placeholder:text-sm placeholder:text-neutral-500"
+          placeholder="alguma observação do item? • opcional ex: tirar algum ingrediente, ponto do prato"
+        ></textarea>
+      </div>
     </div>
   );
 };

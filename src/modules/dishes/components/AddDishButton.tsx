@@ -1,6 +1,6 @@
 import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 import { AddDishButtonProps } from "../types";
-import Image from "next/image";
+import { MinusCircle, PlusCircle, Trash2 } from "lucide-react";
 
 export const AddDishButton = ({
   onAdd,
@@ -31,21 +31,19 @@ export const AddDishButton = ({
       ) : (
         <div className="flex items-center gap-4">
           <button onClick={onDelete}>
-            <Image
-              src={"/icons/trash.svg"}
-              alt={"Remove icon"}
-              width={32}
-              height={32}
-            />
+            {quantity === 1 ? (
+              <Trash2 size={32} strokeWidth={1} className="text-teal-400" />
+            ) : (
+              <MinusCircle
+                size={32}
+                strokeWidth={1}
+                className="text-teal-400"
+              />
+            )}
           </button>
           <span className="font-bold text-neutral-700">{quantity}</span>
           <button onClick={onAdd}>
-            <Image
-              src={"/icons/add.svg"}
-              alt={"Add icon"}
-              width={32}
-              height={32}
-            />
+            <PlusCircle size={32} strokeWidth={1} className="text-teal-400" />
           </button>
         </div>
       )}

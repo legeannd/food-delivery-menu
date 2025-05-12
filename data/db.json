@@ -1356,9 +1356,14 @@
         {
           "name": "médio",
           "price": 19.9,
-          "originalPrice": 22.9
+          "originalPrice": 22.9,
+          "type": "size"
         },
-        { "name": "grande", "price": 28.9 }
+        {
+          "name": "grande",
+          "price": 28.9,
+          "type": "size"
+        }
       ]
     },
     {
@@ -1369,10 +1374,10 @@
       "maxSelection": 2,
       "required": true,
       "items": [
-        { "name": "shoyu", "price": 0.0 },
-        { "name": "gengibre", "price": 0.0 },
-        { "name": "wasabi", "price": 0.0 },
-        { "name": "sem acompanhamentos", "price": 0.0 }
+        { "name": "shoyu", "price": 0.0, "type": "side" },
+        { "name": "gengibre", "price": 0.0, "type": "side" },
+        { "name": "wasabi", "price": 0.0, "type": "side" },
+        { "name": "sem acompanhamentos", "price": 0.0, "type": "side" }
       ]
     },
     {
@@ -1381,11 +1386,11 @@
       "description": "escolha quantos quiser",
       "selectionType": "multiple",
       "items": [
-        { "name": "coca-cola", "price": 5.0 },
-        { "name": "fanta laranja", "price": 5.0 },
-        { "name": "guaraná antarctica", "price": 5.0 },
-        { "name": "suco prats laranja", "price": 6.0 },
-        { "name": "água sem gás", "price": 3.0 }
+        { "name": "coca-cola", "price": 5.0, "type": "drink" },
+        { "name": "fanta laranja", "price": 5.0, "type": "drink" },
+        { "name": "guaraná antarctica", "price": 5.0, "type": "drink" },
+        { "name": "suco prats laranja", "price": 6.0, "type": "drink" },
+        { "name": "água sem gás", "price": 3.0, "type": "drink" }
       ]
     },
     {
@@ -1394,8 +1399,8 @@
       "description": "escolha até 1",
       "selectionType": "single",
       "items": [
-        { "name": "hashi", "price": 0.0 },
-        { "name": "garfo e faca descartável", "price": 1.0 }
+        { "name": "hashi", "price": 0.0, "type": "utensil" },
+        { "name": "garfo e faca descartável", "price": 1.0, "type": "utensil" }
       ]
     },
     {
@@ -1405,9 +1410,9 @@
       "selectionType": "multiple",
       "maxSelection": 2,
       "items": [
-        { "name": "biscoito da sorte", "price": 2.0 },
-        { "name": "rolinho primavera", "price": 8.0 },
-        { "name": "guioza", "price": 6.0 }
+        { "name": "biscoito da sorte", "price": 2.0, "type": "extra" },
+        { "name": "rolinho primavera", "price": 8.0, "type": "extra" },
+        { "name": "guioza", "price": 6.0, "type": "extra" }
       ]
     }
   ]
