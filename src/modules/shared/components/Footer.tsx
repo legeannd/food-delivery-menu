@@ -10,6 +10,8 @@ export const Footer = () => {
   useEffect(() => {
     if (pathname.includes("/checkout")) {
       setShowFooter(false);
+    } else {
+      setShowFooter(true);
     }
   }, [pathname]);
 
