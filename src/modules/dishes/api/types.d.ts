@@ -12,3 +12,16 @@ export interface OptionsResponse {
     type: string;
   }>;
 }
+
+export interface DishResponse {
+  name: string;
+  description: string;
+  image: {
+    url: string
+    alt: string
+  }
+  price: number;
+  originalPrice?: number;
+  isDiscounted: boolean;
+  id: string;
+}

@@ -135,7 +135,7 @@ export const RestaurantDetails = ({ id }: { id: string }) => {
                 className="px-4 border-b-4 border-neutral-100"
               >
                 <AccordionTrigger
-                  className="font-bold text-base text-shadow-neutral-900"
+                  className="font-bold text-base cursor-pointer text-shadow-neutral-900"
                   disabled={dish.items.length === 0}
                 >
                   <div className="flex gap-1 items-center">

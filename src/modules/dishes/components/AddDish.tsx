@@ -14,6 +14,7 @@ import { Skeleton } from "./Skeleton";
 import { SelectOption } from "./SelectOption";
 import { CurrentSelectedOption } from "../types";
 import { useLocalStorage } from "@/modules/shared/hooks/useLocalStorage";
+import Link from "next/link";
 
 export const AddDish = () => {
   const [selected, setSelected] = useState<CurrentSelectedOption[]>([]);
@@ -77,13 +78,17 @@ export const AddDish = () => {
         type="multiple"
         defaultValue={[
           "quantidade",
-          ...(data ?? [])
-            ?.filter((option) =>
-              option.items.some((item) =>
-                selected.some((selectedItem) => selectedItem.name === item.name)
-              )
-            )
-            .map((option) => option.id),
+          ...(Array.isArray(data)
+            ? data
+                .filter((option) =>
+                  option.items.some((item) =>
+                    selected.some(
+                      (selectedItem) => selectedItem.name === item.name
+                    )
+                  )
+                )
+                .map((option) => option.id)
+            : []),
         ]}
         className="w-full h-auto"
       >
@@ -106,7 +111,7 @@ export const AddDish = () => {
           >
             <AccordionTrigger
               disableIcon={option.required}
-              className="font-bold text-base text-neutral-900"
+              className="font-bold text-base text-neutral-900 cursor-pointer"
             >
               <div className="flex flex-col">
                 <span>{option.category}</span>
@@ -130,7 +135,7 @@ export const AddDish = () => {
           </AccordionItem>
         ))}
       </Accordion>
-      <div className="px-4 pb-8">
+      <div className="flex flex-col gap-6 px-4 pb-8">
         <textarea
           name="dishObs"
           id="dishObs"
@@ -139,6 +144,14 @@ export const AddDish = () => {
           className="border border-neutral-200 rounded-sm w-full py-2.5 px-3 font-semibold text-sm text-neutral-500 placeholder:font-semibold placeholder:text-sm placeholder:text-neutral-500"
           placeholder="alguma observação do item? • opcional ex: tirar algum ingrediente, ponto do prato"
         ></textarea>
+        {quantity > 0 && (
+          <Link
+            href={"/checkout"}
+            className=" text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
+          >
+            ver ticket
+          </Link>
+        )}
       </div>
     </div>
   );
