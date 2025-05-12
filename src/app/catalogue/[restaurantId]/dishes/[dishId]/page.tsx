@@ -15,9 +15,9 @@ export default async function Dishes({
   const data = (await request(`/dishes/${id}`)) as DishResponse;
 
   return (
-    <div className="flex grow">
-      <div className="flex flex-col gap-4 w-full">
-        <div className="relative flex w-full  max-h-50">
+    <div className="flex grow self-center">
+      <div className="flex flex-col gap-4 w-full md:w-3xl">
+        <div className="relative flex w-full max-h-50">
           {data.image.url && (
             <Image
               src={data.image.url}

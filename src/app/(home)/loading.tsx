@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="flex flex-col space-y-4 px-4 py-6">
+    <div className="flex flex-col self-center w-full md:w-3xl space-y-4 px-4 py-6">
       {Array.from(Array(10).keys()).map((key) => (
         <div key={key} className="flex animate-pulse space-x-4">
           <div className="size-18 rounded-lg bg-gray-200"></div>

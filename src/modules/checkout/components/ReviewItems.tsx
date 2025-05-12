@@ -104,7 +104,7 @@ export const ReviewItems = () => {
     <div className="flex flex-col p-4 w-full h-full justify-end">
       <button
         onClick={back}
-        className=" text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
+        className=" text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold cursor-pointer"
       >
         voltar
       </button>
@@ -229,7 +229,7 @@ export const ReviewItems = () => {
         </div>
         <button
           onClick={() => replace("/")}
-          className="w-full text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
+          className="w-full text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold cursor-pointer"
         >
           ir para pagamento
         </button>

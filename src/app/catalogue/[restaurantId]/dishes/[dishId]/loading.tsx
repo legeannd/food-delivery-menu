@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="flex flex-col flex-grow">
+    <div className="flex flex-col grow self-center w-full md:w-3xl">
       <div className="flex flex-col animate-pulse space-y-8 ">
         <div className="flex-1 space-y-4 py-1">
           <div className="h-50 rounded bg-gray-200"></div>

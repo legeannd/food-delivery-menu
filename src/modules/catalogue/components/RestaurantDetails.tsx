@@ -22,7 +22,7 @@ export const RestaurantDetails = () => {
 
   return (
     data && (
-      <div className="flex grow flex-col w-full">
+      <div className="flex w-full md:w-3xl flex-col">
         <div className="flex flex-col gap-1.5 py-6 px-4">
           <div className="flex flex-col gap-2">
             <div className="flex gap-2 items-center">

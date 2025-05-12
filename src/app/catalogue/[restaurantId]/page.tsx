@@ -4,7 +4,7 @@ import Loading from "./loading";
 
 export default async function Catalogue() {
   return (
-    <div className="flex grow">
+    <div className="flex md:self-center grow">
       <Suspense fallback={<Loading />}>
         <RestaurantDetails />
       </Suspense>

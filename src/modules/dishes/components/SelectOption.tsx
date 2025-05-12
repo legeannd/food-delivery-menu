@@ -89,7 +89,7 @@ export const SelectOption = ({
             <Label
               key={index}
               htmlFor={item.name}
-              className="flex justify-between"
+              className="flex justify-between cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <RadioGroupItem
@@ -122,6 +122,7 @@ export const SelectOption = ({
               <Checkbox
                 id={item.name}
                 checked={!!selected.find((curr) => curr.name === item.name)}
+                className="cursor-pointer"
                 onCheckedChange={(checked) => {
                   handleSelectOption({
                     name: item.name,
@@ -130,7 +131,10 @@ export const SelectOption = ({
                   });
                 }}
               />
-              <Label htmlFor={item.name} className="text-sm text-neutral-500">
+              <Label
+                htmlFor={item.name}
+                className="text-sm text-neutral-500 cursor-pointer"
+              >
                 {item.name}
               </Label>
             </div>

@@ -37,13 +37,17 @@ export const AddDishButton = ({
               <MinusCircle
                 size={32}
                 strokeWidth={1}
-                className="text-teal-400"
+                className="text-teal-400 cursor-pointer"
               />
             )}
           </button>
           <span className="font-bold text-neutral-700">{quantity}</span>
           <button onClick={onAdd}>
-            <PlusCircle size={32} strokeWidth={1} className="text-teal-400" />
+            <PlusCircle
+              size={32}
+              strokeWidth={1}
+              className="text-teal-400 cursor-pointer"
+            />
           </button>
         </div>
       )}

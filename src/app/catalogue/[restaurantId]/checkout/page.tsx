@@ -16,7 +16,7 @@ export default async function Checkout({
   )) as RestaurantResponse;
 
   return (
-    <div className="flex grow">
+    <div className="flex grow w-full md:w-3xl self-center">
       <div className="flex flex-col w-full">
         <div className="flex gap-2.5 items-center pt-6 px-4">
           <Image

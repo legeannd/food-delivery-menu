@@ -20,39 +20,41 @@ export const RestaurantList = () => {
   );
 
   return (
-    <div className="flex flex-col px-4 py-6 gap-9">
-      {openRestaurants && (
-        <div className="flex flex-col gap-4 ">
-          <div className="font-extrabold text-purple-500">abertos</div>
-          {openRestaurants.map((item) => (
-            <RestaurantCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              status={item.status as "open" | "closed"}
-              deliveryFee={item.deliveryFee}
-              rating={item.rating}
-            />
-          ))}
-        </div>
-      )}
-      {closedRestaurants && (
-        <div className="flex flex-col gap-4">
-          <div className="font-extrabold text-purple-500">fechados</div>
-          {closedRestaurants.map((item) => (
-            <RestaurantCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              status={item.status as "open" | "closed"}
-              deliveryFee={item.deliveryFee}
-              rating={item.rating}
-            />
-          ))}
-        </div>
-      )}
+    <div className="flex w-full justify-center">
+      <div className="flex flex-col w-full md:w-3xl  px-4 py-6 gap-9">
+        {openRestaurants && (
+          <div className="flex flex-col gap-4 ">
+            <div className="font-extrabold text-purple-500">abertos</div>
+            {openRestaurants.map((item) => (
+              <RestaurantCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                image={item.image}
+                status={item.status as "open" | "closed"}
+                deliveryFee={item.deliveryFee}
+                rating={item.rating}
+              />
+            ))}
+          </div>
+        )}
+        {closedRestaurants && (
+          <div className="flex flex-col gap-4">
+            <div className="font-extrabold text-purple-500">fechados</div>
+            {closedRestaurants.map((item) => (
+              <RestaurantCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                image={item.image}
+                status={item.status as "open" | "closed"}
+                deliveryFee={item.deliveryFee}
+                rating={item.rating}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
