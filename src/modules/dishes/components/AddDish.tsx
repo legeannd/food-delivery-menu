@@ -160,7 +160,7 @@ export const AddDish = ({ price }: { price: number }) => {
         ></textarea>
         {quantity > 0 && (
           <Link
-            href={`/catalogue/${params.restaurantId}/checkout`}
+            href={`/catalog/${params.restaurantId}/checkout`}
             className="text-center py-3 rounded-[.5rem] bg-purple-500 text-white font-bold"
           >
             ver ticket

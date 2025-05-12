@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { CurrentSavedItems } from "../types";
 import { useGetAvailableOptions } from "@/modules/dishes/api/queries";
 import { useEffect, useState } from "react";
-import { useGetRestaurantById } from "@/modules/catalogue/api/queries";
+import { useGetRestaurantById } from "@/modules/catalog/api/queries";
 import { formatCurrency } from "@/modules/shared/utils/formatCurency";
 import { MinusCircle, Pencil, PlusCircle } from "lucide-react";
 import Link from "next/link";
@@ -143,7 +143,7 @@ export const ReviewItems = () => {
               </div>
               <div className="flex justify-end items-center gap-6 font-bold text-sm text-teal-400">
                 <Link
-                  href={`/catalogue/${params.restaurantId}/dishes/${currentDish?.id}`}
+                  href={`/catalog/${params.restaurantId}/dishes/${currentDish?.id}`}
                   className="flex gap-1 items-center"
                 >
                   <Pencil size={16} />

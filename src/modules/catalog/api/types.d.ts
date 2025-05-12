@@ -1,4 +1,4 @@
-export interface CatalogueDetailResponse {
+export interface CatalogDetailResponse {
   title: string;
   image: {
     url: string;

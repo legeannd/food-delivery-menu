@@ -1,6 +1,6 @@
 import { request } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
-import { CatalogueDetailResponse } from "./types";
+import { CatalogDetailResponse } from "./types";
 
 export function useGetRestaurantById({ id }: { id: string }) {
   const getRestaurantById = async () => {
@@ -9,7 +9,7 @@ export function useGetRestaurantById({ id }: { id: string }) {
     return response
   }
 
-  return useQuery<CatalogueDetailResponse>({
+  return useQuery<CatalogDetailResponse>({
     queryKey: ['restaurant', id],
     queryFn: getRestaurantById,
   })

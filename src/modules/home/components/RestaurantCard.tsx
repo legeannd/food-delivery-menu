@@ -18,7 +18,7 @@ const RestaurantCard = ({
 
   return (
     <Link
-      href={`/catalogue/${id}`}
+      href={`/catalog/${id}`}
       className="flex w-full items-center gap-3 rounded-lg overflow-hidden bg-neutral-50"
     >
       <div className="w-18 h-18 flex items-center">
