@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/modules/shared/components/Header";
 import { Footer } from "@/modules/shared/components/Footer";
 import { QueryProvider } from "@/providers/QueryProvider";
+import { Suspense } from "react";
 
 const nunito = Nunito({
   weight: ["400", "600", "700", "800"],
@@ -26,7 +27,9 @@ export default function RootLayout({
       <body className={`${nunito.variable} antialiased`}>
         <QueryProvider>
           <div className="flex flex-col min-h-screen justify-between touch-none">
-            <Header />
+            <Suspense>
+              <Header />
+            </Suspense>
             {children}
             <Footer />
           </div>
