@@ -12,17 +12,53 @@ import Link from "next/link";
 
 export const ReviewItems = () => {
   const [items, setItems] = useState<CurrentSavedItems | null>(null);
+  const { back, replace } = useRouter();
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const { data } = useGetAvailableOptions();
   const params = useParams();
+  const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}`;
   const { data: restaurantData } = useGetRestaurantById({
     id: Array.isArray(params.restaurantId)
       ? params.restaurantId[0]
       : params.restaurantId ?? "",
   });
-  const { back, replace } = useRouter();
+  const price = items
+    ? Object.keys(items).reduce((acc, key) => {
+        const currentItem = items[key];
+        const currentDish = restaurantData?.dishes
+          .find((item) => item.items.some((current) => current.id === key))
+          ?.items.find((current) => current.id === key);
 
-  const LOCALSTORAGE_KEY = `restaurant-${params.restaurantId}`;
+        const basePrice =
+          currentItem.quantity *
+          (data
+            ?.find((option) =>
+              option.items.some((item) => item.type === "size")
+            )
+            ?.items.find(
+              (item) =>
+                item.name ===
+                currentItem.selected.find((selected) => selected.name)?.name
+            )?.price ??
+            currentDish?.price ??
+            0);
+
+        const additionalPrice = currentItem.selected.reduce(
+          (sum, selectedItem) => {
+            if (selectedItem.type === "size") return sum;
+            const itemPrice =
+              data
+                ?.find((option) => option.type === selectedItem.type)
+                ?.items.find((item) => item.name === selectedItem.name)
+                ?.price ?? 0;
+            return sum + itemPrice;
+          },
+          0
+        );
+
+        return acc + basePrice + additionalPrice;
+      }, 0)
+    : 0;
 
   const handleChangeDishQuantity = (type: "add" | "remove", key: string) => {
     const item = items?.[key];
@@ -181,7 +217,9 @@ export const ReviewItems = () => {
       <div className="flex w-full shadow-[0_0_15px_0_rgba(0,0,0,0.1)] rounded-[.75rem] gap-7 px-8 py-4 items-center">
         <div className="flex flex-col">
           <span className="font-bold text-sm text-neutral-900">subtotal</span>
-          <span className="font-extrabold text-xl text-purple-500">0</span>
+          <span className="font-extrabold text-xl text-purple-500">
+            {price > 0 ? formatCurrency(price) : 0}
+          </span>
         </div>
         <button
           onClick={() => replace("/")}
