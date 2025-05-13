@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/icons/logo.svg" width="200"/>
+  <img src="public/icons/logo.svg" width="100"/>
 </p>
 
 # [Food Delivery Menu](https://food-delivery-menu.vercel.app/)
