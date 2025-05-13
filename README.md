@@ -7,7 +7,7 @@
 ![stacks](https://img.shields.io/badge/React-v19.0.0-brightgreen) ![stacks](https://img.shields.io/badge/Next.js-v15.3.2-brightgreen) ![stacks](https://img.shields.io/badge/TanStack%20Query-v5.75.5-brightgreen) ![stacks](https://img.shields.io/badge/TailwindCSS-v4-brightgreen) ![stacks](https://img.shields.io/badge/Stack-Typescript-blue) ![GitHub](https://img.shields.io/github/license/legeannd/food-delivery-menu)
 
 <p align="center">
-  <img height="600" src="public/docs/web.gif"/>
+  <img height="500" src="public/docs/web.gif"/>
 </p>
 
 - [Content (en-US)](#section-en_us)
